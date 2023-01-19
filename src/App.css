@@ -1,0 +1,16 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 1%;
+}
+
+.movie-data {
+  margin: 20px;
+}
+
+input#movieTitle {
+  margin: 10px;
+}
+
+
+
