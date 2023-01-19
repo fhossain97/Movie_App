@@ -9,6 +9,11 @@ function App() {
   const [movieTitle, setMovieTitle] = useState('star wars');
   const [movieInfo, setMovieInfo] = useState({})
 
+  function liftMovieTitle(title){
+    // title is the argument to the function when it is called
+    // which is inside of the Form component
+    setMovieTitle(title)
+  }
 
   // make an api call to omdb api in this component
   // make the api call when the component loads?
@@ -39,13 +44,13 @@ function App() {
     // make the function call
     makeApiCall()
 
-  }, [])
+  }, [movieTitle])
 
 
   return (
     <div className="App">
       <div>Best Movie App Ever</div>
-      <Form />
+      <Form liftMovieTitle={liftMovieTitle}/>
       <MovieInfo movieData={movieInfo}/>
     </div>
   );
