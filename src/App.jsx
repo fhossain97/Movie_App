@@ -18,40 +18,29 @@ function App() {
   // make an api call to omdb api in this component
   // make the api call when the component loads?
   useEffect(() => {
-    console.log('use Effect firing')
-    // update your api key
-    const movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=8919e0eb`;
+let movieUrl = `https://www.omdbapi.com/?t=${movieTitle}&apikey=93d3312`;
 
-    async function makeApiCall(){
-      // fetch(movieUrl)
-      try {
-        // the response is JSON, we have to parse it
-        const responseJson = await fetch(movieUrl);
-        console.log(responseJson)
-        // changes the response from json into a javascript object called data
-        const data = await responseJson.json()
-        console.log(data)
-        // i'm just passing data because I want the whole object
-        // You have to look at the data object every single you time work with an 
-        // api, they are all different, maybe data.data, data.body, data.somethingElse
-        setMovieInfo(data)
-      } catch(err){
-        console.log(err)
-      }
+const makeApiCall = async () => {
+  const res = await fetch(movieUrl)
+  const json = await res.json()
   
-    }
+    setMovieInfo((json))
+ 
+}
+makeApiCall()
 
-    // make the function call
-    makeApiCall()
+}, [movieTitle])
 
-  }, [movieTitle])
+
+
 
 
   return (
     <div className="App">
       <div>Best Movie App Ever</div>
       <Form liftMovieTitle={liftMovieTitle}/>
-      <MovieInfo movieData={movieInfo}/>
+<MovieInfo movieData={movieInfo} /> 
+      
     </div>
   );
 }
